@@ -2,7 +2,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-export default function SignOut({ className }: { className: string }) {
+export default function SignOut({ className }: { className?: string }) {
   const navigate = useNavigate();
   const [cookies] = useCookies(["connect.sid"]);
 
