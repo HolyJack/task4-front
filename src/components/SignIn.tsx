@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FormSubmit from "./FormSubmit";
+import axios from "../utils/axios";
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -13,17 +13,10 @@ export default function SignIn() {
     password: string;
   }) {
     try {
-      await axios.post(
-        "http://localhost:3000/signin",
-        {
-          username,
-          password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        },
-      );
+      await axios.post("signin", {
+        username,
+        password,
+      });
       navigate("/dashboard");
     } catch (err) {
       if (axios.isAxiosError(err)) window.alert(err.response?.data?.message);

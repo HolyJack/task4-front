@@ -8,9 +8,7 @@ export default function SignOut({ className }: { className?: string }) {
 
   async function signOut() {
     try {
-      await axios.delete("http://localhost:3000/signout", {
-        withCredentials: true,
-      });
+      await axios.delete("signout");
       navigate(0);
     } catch (err) {
       if (axios.isAxiosError(err)) window.alert(err.response?.data?.message);

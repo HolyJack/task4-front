@@ -43,9 +43,7 @@ export default function DashboardPage() {
   const fetchUsers = useCallback(async () => {
     if (!cookies["connect.sid"]) return;
     try {
-      const res = await axios.get("http://localhost:3000/users", {
-        withCredentials: true,
-      });
+      const res = await axios.get("users");
       const users = parseDataToUsers(res);
       const columns = parseUserToCols(users);
       setUsers(users);
@@ -67,13 +65,9 @@ export default function DashboardPage() {
     try {
       const usernames = selected.map((row) => row.username);
 
-      await axios.patch(
-        "http://localhost:3000/users",
-        {
-          data: { usernames, active },
-        },
-        { withCredentials: true },
-      );
+      await axios.patch("users", {
+        data: { usernames, active },
+      });
       await fetchUsers();
     } catch (err) {
       if (axios.isAxiosError(err)) window.alert(err.response?.data?.message);
@@ -94,9 +88,8 @@ export default function DashboardPage() {
     if (!selected) return;
     try {
       const usernames = selected.map((row) => row.username);
-      await axios.delete("http://localhost:3000/users", {
+      await axios.delete("users", {
         data: { usernames },
-        withCredentials: true,
       });
       await fetchUsers();
     } catch (err) {

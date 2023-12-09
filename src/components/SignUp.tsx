@@ -1,5 +1,5 @@
-import axios from "axios";
 import FormSubmit from "./FormSubmit";
+import axios from "../utils/axios";
 
 export default function SignUp() {
   async function register({
@@ -12,18 +12,11 @@ export default function SignUp() {
     password: string;
   }) {
     try {
-      const res = await axios.post(
-        "http://localhost:3000/signup",
-        {
-          username,
-          password,
-          email,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        },
-      );
+      const res = await axios.post("/signup", {
+        username,
+        password,
+        email,
+      });
       window.alert(`User ${res.data.username} created successfully.`);
     } catch (err) {
       if (axios.isAxiosError(err)) window.alert(err.response?.data?.message);

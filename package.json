@@ -12,6 +12,7 @@
   "dependencies": {
     "ag-grid-react": "^31.0.0",
     "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
     "react": "^18.3.0-canary-b36ae8d7a-20231207",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.3.0-canary-b36ae8d7a-20231207",
